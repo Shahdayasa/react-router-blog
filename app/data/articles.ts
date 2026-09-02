@@ -1,0 +1,187 @@
+export interface Article {
+  slug: string;
+  year: string;
+  month: string;
+  day: string;
+  title: string;
+  excerpt: string;
+  author: { name: string; avatarSeed: string };
+  coverImage: string;
+  content: Array<
+    | { type: "heading"; id: string; text: string }
+    | { type: "paragraph"; text: string }
+    | { type: "list"; items: string[] }
+  >;
+  keyTakeaways: string[];
+}
+
+export const articles: Article[] = [
+  {
+    slug: "silent-churn-signals-before-they-cancel",
+    year: "2026",
+    month: "08",
+    day: "10",
+    title: "Silent Churn Signals: What Your Customers Stop Doing Before They Leave",
+    excerpt:
+      "Most churned customers never file a complaint. They simply fade — fewer logins, shorter sessions, quieter support threads. Here's how to catch the fade before it becomes a cancellation.",
+    author: { name: "Lina Fares", avatarSeed: "lina" },
+    coverImage: "https://picsum.photos/seed/silent-churn/900/500",
+    content: [
+      { type: "paragraph", text: "By the time a customer clicks 'cancel', the decision was usually made weeks earlier. The visible moment of churn is just paperwork for a choice that already happened quietly." },
+      { type: "heading", id: "what-is-silent-churn", text: "What Silent Churn Actually Looks Like" },
+      { type: "paragraph", text: "Silent churn shows up as a drop in engagement long before any cancellation request. A user who logged in daily starts logging in weekly. A feature they relied on goes untouched for a month. These are not dramatic events — they are gradual disengagements that most teams don't track closely enough to notice in time." },
+      { type: "list", items: [
+        "Login frequency drops by more than 40% over a rolling 30-day window",
+        "Core feature usage stops entirely for two or more billing cycles",
+        "Support tickets go from proactive questions to none at all",
+      ]},
+      { type: "heading", id: "tracking-the-fade", text: "Tracking the Fade in Practice" },
+      { type: "paragraph", text: "A simple engagement score — combining login recency, feature depth, and support interaction — can flag accounts drifting toward churn well before a cancellation button is ever clicked. The goal isn't to predict churn perfectly, it's to buy your team time to act." },
+    ],
+    keyTakeaways: [
+      "Churn decisions are usually made weeks before the cancellation itself.",
+      "Engagement drop-off is a stronger early signal than support complaints.",
+      "A basic engagement score can flag at-risk accounts in time to intervene.",
+    ],
+  },
+  {
+    slug: "failed-payments-are-not-lost-customers",
+    year: "2026",
+    month: "08",
+    day: "08",
+    title: "Failed Payments Are Not Lost Customers — If You Catch Them in Time",
+    excerpt:
+      "An expired card isn't a customer changing their mind. It's a technical hiccup wearing the costume of churn. Here's how to tell the two apart and win back the recoverable ones.",
+    author: { name: "Omar Haddad", avatarSeed: "omar" },
+    coverImage: "https://picsum.photos/seed/failed-payment/900/500",
+    content: [
+      { type: "paragraph", text: "Not every lost subscriber decided to leave. A meaningful share of cancellations are simply the result of a declined card, an expired payment method, or a bank flagging a routine charge as suspicious." },
+      { type: "heading", id: "two-kinds-of-churn", text: "Two Very Different Kinds of Churn" },
+      { type: "paragraph", text: "Voluntary churn is a decision. Involuntary churn is an accident. Treating both the same way — with a single farewell email — means you're giving up on customers who never actually wanted to leave." },
+      { type: "list", items: [
+        "Retry failed charges on a smart schedule instead of all at once",
+        "Send a friendly, low-pressure reminder before the account is suspended",
+        "Make updating a payment method a two-click process, not a login maze",
+      ]},
+      { type: "heading", id: "the-recovery-window", text: "The Recovery Window Is Short" },
+      { type: "paragraph", text: "Most recoverable payment failures are won back within the first few days. Waiting a full billing cycle to follow up usually means the customer has already moved on mentally, even if the account is technically still active." },
+    ],
+    keyTakeaways: [
+      "A declined card is often a technical failure, not a customer decision.",
+      "Smart retry timing recovers meaningfully more revenue than a single retry.",
+      "Speed matters — most recoveries happen within the first few days.",
+    ],
+  },
+  {
+    slug: "the-real-cost-of-a-confusing-cancellation-flow",
+    year: "2026",
+    month: "08",
+    day: "05",
+    title: "The Real Cost of a Confusing Cancellation Flow",
+    excerpt:
+      "Making cancellation hard doesn't stop people from leaving — it just makes them leave angrier, and less likely to ever come back.",
+    author: { name: "Lina Fares", avatarSeed: "lina" },
+    coverImage: "https://picsum.photos/seed/cancel-flow/900/500",
+    content: [
+      { type: "paragraph", text: "There's a tempting theory in subscription businesses: if cancelling is hard enough, fewer people will do it. In practice, this rarely reduces churn — it mostly reduces goodwill." },
+      { type: "heading", id: "friction-vs-persuasion", text: "Friction Is Not the Same as Persuasion" },
+      { type: "paragraph", text: "A cancellation flow buried three menus deep doesn't change anyone's mind. It just delays the outcome and adds frustration, which shows up later in reviews, refund requests, and chargebacks." },
+      { type: "list", items: [
+        "A one-click cancellation path builds more trust than it costs in retention",
+        "Exit surveys placed at the moment of cancellation capture the most honest feedback",
+        "A single, well-timed offer beats five desperate pop-ups",
+      ]},
+      { type: "heading", id: "designing-a-fair-exit", text: "Designing a Fair Exit" },
+      { type: "paragraph", text: "The best-performing cancellation flows respect the customer's decision while still leaving one genuine door open — a pause option, a downgrade, or a short survey that feeds directly back into the product roadmap." },
+    ],
+    keyTakeaways: [
+      "Hiding the cancel button rarely reduces churn — it reduces trust.",
+      "Exit surveys at the moment of cancellation yield the most honest data.",
+      "One well-placed offer outperforms multiple aggressive retention pop-ups.",
+    ],
+  },
+  {
+    slug: "what-your-nrr-number-is-actually-telling-you",
+    year: "2026",
+    month: "08",
+    day: "02",
+    title: "What Your NRR Number Is Actually Telling You",
+    excerpt:
+      "A healthy Net Revenue Retention can quietly hide a shrinking customer base. Here's how to read the metric without fooling yourself.",
+    author: { name: "Omar Haddad", avatarSeed: "omar" },
+    coverImage: "https://picsum.photos/seed/nrr-metric/900/500",
+    content: [
+      { type: "paragraph", text: "Net Revenue Retention is one of the most quoted numbers in subscription businesses, and one of the easiest to misread. A strong NRR can sit comfortably on top of a shrinking customer count." },
+      { type: "heading", id: "how-nrr-can-mislead", text: "How a Good Number Can Mask a Bad Trend" },
+      { type: "paragraph", text: "If your biggest accounts are expanding while your smaller accounts are quietly churning, NRR can stay flattering for a long time — right up until the expansion runs out of room." },
+      { type: "list", items: [
+        "Always pair NRR with logo retention to see the full picture",
+        "Segment NRR by account size to spot masked churn in smaller tiers",
+        "Track the trend over multiple quarters, not a single snapshot",
+      ]},
+      { type: "heading", id: "reading-both-numbers-together", text: "Reading Both Numbers Together" },
+      { type: "paragraph", text: "NRR tells you about revenue. Logo retention tells you about relationships. A business that only watches the first number is flying with half its instruments covered." },
+    ],
+    keyTakeaways: [
+      "NRR can look healthy even while your customer count is shrinking.",
+      "Segmenting NRR by account size reveals churn that a blended number hides.",
+      "Logo retention and NRR should always be read together, never alone.",
+    ],
+  },
+  {
+    slug: "personalized-offers-that-dont-feel-desperate",
+    year: "2026",
+    month: "07",
+    day: "29",
+    title: "Personalized Offers That Don't Feel Desperate",
+    excerpt:
+      "A discount thrown at every cancelling customer trains people to threaten to leave. A relevant, well-timed offer does the opposite.",
+    author: { name: "Lina Fares", avatarSeed: "lina" },
+    coverImage: "https://picsum.photos/seed/personalized-offer/900/500",
+    content: [
+      { type: "paragraph", text: "Blanket discounts sent to every customer who starts a cancellation flow can quietly teach your most price-sensitive users to threaten to leave every renewal period." },
+      { type: "heading", id: "relevance-over-discount-size", text: "Relevance Beats Discount Size" },
+      { type: "paragraph", text: "A smaller offer tied to the specific reason someone is leaving — a missing feature, a pricing tier mismatch, a pause in their business — tends to outperform a larger, generic discount." },
+      { type: "list", items: [
+        "Match the offer to the stated cancellation reason whenever possible",
+        "Offer a pause instead of a discount for seasonal or temporary needs",
+        "Reserve your best offer for customers who show genuine long-term value",
+      ]},
+      { type: "heading", id: "avoiding-the-discount-trap", text: "Avoiding the Discount Trap" },
+      { type: "paragraph", text: "The goal of a retention offer isn't to win every cancellation — it's to win the ones worth winning, without training your whole customer base to expect a discount on the way out." },
+    ],
+    keyTakeaways: [
+      "Generic discounts can train customers to threaten cancellation for a deal.",
+      "Offers matched to the actual cancellation reason convert better.",
+      "Save your strongest offer for your most valuable at-risk accounts.",
+    ],
+  },
+  {
+    slug: "reading-cancellation-feedback-without-drowning-in-it",
+    year: "2026",
+    month: "07",
+    day: "25",
+    title: "Reading Cancellation Feedback Without Drowning in It",
+    excerpt:
+      "Exit survey answers pile up fast and rarely get read closely. Here's a lighter way to turn that pile into decisions.",
+    author: { name: "Omar Haddad", avatarSeed: "omar" },
+    coverImage: "https://picsum.photos/seed/exit-feedback/900/500",
+    content: [
+      { type: "paragraph", text: "Most exit survey responses end up in a spreadsheet nobody opens twice. The intent to learn from churn is there — the time to actually read hundreds of free-text answers usually isn't." },
+      { type: "heading", id: "grouping-not-reading-everything", text: "Group Themes Instead of Reading Everything" },
+      { type: "paragraph", text: "Rather than reading every response individually, grouping answers into a handful of recurring themes — price, missing feature, poor support, switched to a competitor — turns noise into a short, actionable list." },
+      { type: "list", items: [
+        "Review themes monthly, not response by response as they arrive",
+        "Bring the top three recurring themes to the product team directly",
+        "Track whether a theme is growing or shrinking over time, not just its current size",
+      ]},
+      { type: "heading", id: "closing-the-loop", text: "Closing the Loop" },
+      { type: "paragraph", text: "Feedback only pays off when it changes something. Even a small visible fix tied to a recurring cancellation reason can shift the trend within a quarter." },
+    ],
+    keyTakeaways: [
+      "Grouping exit feedback into themes is more useful than reading every response.",
+      "Trend direction matters more than the raw count of a single complaint.",
+      "Feedback only has value once it visibly changes something in the product.",
+    ],
+  },
+];
