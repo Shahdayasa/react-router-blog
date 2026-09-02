@@ -9,5 +9,4 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
   ],
-  base: "/react-router-blog/",
 });
