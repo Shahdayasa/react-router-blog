@@ -1,21 +1,4 @@
-export interface Article {
-  slug: string;
-  year: string;
-  month: string;
-  day: string;
-  title: string;
-  excerpt: string;
-  author: { name: string; avatarSeed: string };
-  coverImage: string;
-  content: Array<
-    | { type: "heading"; id: string; text: string }
-    | { type: "paragraph"; text: string }
-    | { type: "list"; items: string[] }
-  >;
-  keyTakeaways: string[];
-}
-
-export const articles: Article[] = [
+export const articles = [
   {
     slug: "silent-churn-signals-before-they-cancel",
     year: "2026",
