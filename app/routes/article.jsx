@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
 import { articles } from "~/data/articles";
-
+import { CommentForm } from "~/components/CommentForm";
 export default function Article() {
   const { year, month, day, slug } = useParams();
 
@@ -89,6 +89,7 @@ export default function Article() {
           <div className="back-link-wrap">
             <Link to="/blog">← Back to blog</Link>
           </div>
+            <CommentForm />        
         </article>
 
         {/* Sidebar */}

@@ -18,8 +18,7 @@ export function Navbar() {
           <a href="#" className="navbar-link">Pricing</a>
           <a href="#" className="navbar-link">Case Studies</a>
           <a href="#" className="navbar-link">Contact Us</a>
-          <a href="#" className="navbar-link">Sign Up</a>
-        </nav>
+       <Link to="/signup" className="navbar-link">Sign Up</Link>        </nav>
 
         <button className="navbar-cta">Book Demo</button>
       </div>
