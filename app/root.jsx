@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { Navbar } from "./components/Navbar";
 import "./app.css";
 
 export const links = () => [
@@ -46,6 +46,7 @@ export function Layout({ children }) {
         <Links />
       </head>
       <body>
+          <Navbar />
         {children}
         <ScrollRestoration />
         <Scripts />
