@@ -43,12 +43,13 @@ export default function Article() {
             <span>·</span>
             <span>{formattedDate}</span>
           </div>
-
-          <img
-            src={article.coverImage}
-            alt={article.title}
-            className="article-cover"
-          />
+<img
+  src={article.coverImage}
+  alt={article.title}
+  className="article-cover"
+  width="1200"
+  height="600"
+/>
 
           {/* Key Takeaways */}
           <div className="takeaways-box">
