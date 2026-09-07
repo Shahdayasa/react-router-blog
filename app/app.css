@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -591,12 +590,7 @@ img {
     color: #d1d5db;
   }
 }
-.footer {
-  background-color: #1e1b4b;
-  color: #e5e7eb;
-  padding: 3rem 2rem 1.5rem;
-  margin-top: 4rem;
-}
+
 
 .footer-inner {
   max-width: 80rem;
@@ -917,4 +911,12 @@ img {
 .signup-demo-link a {
   color: #f5b729;
   font-weight: 600;
+}
+
+.footer {
+  background-color: #1e1b4b;
+  color: #e5e7eb;
+  padding: 3rem 2rem 1.5rem;
+  margin-top: 4rem;
+  min-height: 420px;
 }
