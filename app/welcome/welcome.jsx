@@ -7,16 +7,20 @@ export function Welcome() {
       <div className="welcome-content">
         <header className="welcome-header">
           <div className="welcome-logo-wrap">
-            <img
-              src={logoLight}
-              alt="React Router"
-              className="welcome-logo welcome-logo-light"
-            />
-            <img
-              src={logoDark}
-              alt="React Router"
-              className="welcome-logo welcome-logo-dark"
-            />
+       <img
+  src={logoLight}
+  alt="React Router"
+  className="welcome-logo welcome-logo-light"
+  width="500"
+  height="172"
+/>
+<img
+  src={logoDark}
+  alt="React Router"
+  className="welcome-logo welcome-logo-dark"
+  width="500"
+  height="172"
+/>
           </div>
         </header>
         <div className="welcome-resources-wrap">
