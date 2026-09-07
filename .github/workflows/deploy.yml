@@ -35,6 +35,12 @@ jobs:
       - name: Build
         run: npm run build
 
+     
+      - name: Flatten prerendered output for GitHub Pages basename
+        run: |
+          cp -r build/client/react-router-blog/. build/client/
+          rm -rf build/client/react-router-blog
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
