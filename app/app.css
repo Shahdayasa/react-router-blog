@@ -1036,4 +1036,7 @@ img {
     border-left-color: #f9fafb;
   }
 }
- 
+ .article-body h2,
+.takeaways-title {
+  scroll-margin-top: 140px;
+}
