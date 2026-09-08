@@ -942,3 +942,34 @@ img {
   white-space: nowrap;
   border: 0;
 }
+
+
+
+@media (prefers-color-scheme: dark) {
+  .blog-card-excerpt,
+  .blog-card-meta,
+  .article-meta,
+  .comment-subtitle {
+    color: #9ca3af;
+  }
+
+  .article-body p,
+  .article-body li,
+  .takeaways-list {
+    color: #d1d5db;
+  }
+
+  .takeaways-box {
+    background-color: #111827;
+    border-color: #374151;
+  }
+
+  .toc-box {
+    border-color: #374151;
+  }
+
+  .article-badge {
+    background-color: #1f2937;
+    color: #d1d5db;
+  }
+}
