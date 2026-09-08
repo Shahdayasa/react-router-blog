@@ -162,7 +162,7 @@ export default function Article() {
               <ul className="toc-list">
                 {headings.map((h) => (
                   <li key={h.id}>
-                   <a
+                  <a
     href={`#${h.id}`}
     onClick={(e) => {
       e.preventDefault();
@@ -172,7 +172,6 @@ export default function Article() {
       if (!element) return;
 
       const offset = 140;
-
       const elementPosition =
         element.getBoundingClientRect().top + window.scrollY;
 
@@ -182,6 +181,8 @@ export default function Article() {
       });
 
       setActiveId(h.id);
+
+      window.history.replaceState(null, "", `#${h.id}`);
     }}
     className={
       activeId === h.id
