@@ -6,7 +6,8 @@ import { CommentForm } from "~/components/CommentForm";
 export function loader({ params }) {
   const { year, month, day, slug } = params;
   const article = articles.find(
-    (a) => a.year === year && a.month === month && a.day === day && a.slug === slug
+    (a) =>
+      a.year === year && a.month === month && a.day === day && a.slug === slug,
   );
   return { article };
 }
@@ -26,38 +27,47 @@ export function meta({ data }) {
 export default function Article() {
   const { article } = useLoaderData();
   const [activeId, setActiveId] = useState(null);
- 
+
   const contentHeadings = article
     ? article.content.filter((block) => block.type === "heading")
     : [];
- 
+
   const headings = article
     ? [{ id: "key-takeaways", text: "Key Takeaways" }, ...contentHeadings]
     : [];
 
   useEffect(() => {
     if (!article || headings.length === 0) return;
- 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
+    const updateActiveHeading = () => {
+      const activationPoint = 140;
+      let currentId = null;
+      headings.forEach((heading) => {
+        const element = document.getElementById(heading.id);
+        if (!element) return;
+        const top = element.getBoundingClientRect().top;
+        if (top <= activationPoint) {
+          currentId = heading.id;
+        }
+      });
+      setActiveId(currentId);
+    };
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveHeading();
+          ticking = false;
         });
-      },
-      {
-        rootMargin: "-15% 0px -70% 0px",
-        threshold: 0,
+        ticking = true;
       }
-    );
- 
-    headings.forEach((h) => {
-      const el = document.getElementById(h.id);
-      if (el) observer.observe(el);
-    });
- 
-    return () => observer.disconnect();
+    };
+    updateActiveHeading();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateActiveHeading);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateActiveHeading);
+    };
   }, [article]);
 
   if (!article) {
@@ -70,9 +80,12 @@ export default function Article() {
   }
 
   const formattedDate = new Date(
-    `${article.year}-${article.month}-${article.day}`
-  ).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-
+    `${article.year}-${article.month}-${article.day}`,
+  ).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <main className="container">
@@ -101,7 +114,9 @@ export default function Article() {
           />
 
           <div className="takeaways-box">
-<h2 className="takeaways-title" id="key-takeaways">Key Takeaways</h2>
+            <h2 className="takeaways-title" id="key-takeaways">
+              Key Takeaways
+            </h2>
             <ul className="takeaways-list">
               {article.keyTakeaways.map((point, i) => (
                 <li key={i}>{point}</li>
@@ -141,7 +156,7 @@ export default function Article() {
         </article>
 
         <aside>
-   <div className="sidebar-sticky">
+          <div className="sidebar-sticky">
             <div className="toc-box">
               <h2 className="toc-title">Table of Contents</h2>
               <ul className="toc-list">
@@ -150,7 +165,9 @@ export default function Article() {
                     <a
                       href={`#${h.id}`}
                       className={
-                        activeId === h.id ? "toc-link toc-link-active" : "toc-link"
+                        activeId === h.id
+                          ? "toc-link toc-link-active"
+                          : "toc-link"
                       }
                     >
                       {h.text}
