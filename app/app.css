@@ -973,3 +973,25 @@ img {
     color: #d1d5db;
   }
 }
+
+
+.toc-link {
+  color: #6b7280;
+  transition: color 0.15s ease, font-weight 0.15s ease;
+}
+ 
+.toc-link-active {
+  color: #2563eb;
+  font-weight: 600;
+}
+ 
+@media (prefers-color-scheme: dark) {
+  .toc-link {
+    color: #9ca3af;
+  }
+ 
+  .toc-link-active {
+    color: #60a5fa;
+  }
+}
+ 

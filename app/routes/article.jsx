@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import { articles } from "~/data/articles";
 import { CommentForm } from "~/components/CommentForm";
@@ -24,6 +25,36 @@ export function meta({ data }) {
 
 export default function Article() {
   const { article } = useLoaderData();
+  const [activeId, setActiveId] = useState(null);
+ 
+  const headings = article
+    ? article.content.filter((block) => block.type === "heading")
+    : [];
+
+    useEffect(() => {
+    if (!article || headings.length === 0) return;
+ 
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-15% 0px -70% 0px",
+        threshold: 0,
+      }
+    );
+ 
+    headings.forEach((h) => {
+      const el = document.getElementById(h.id);
+      if (el) observer.observe(el);
+    });
+ 
+    return () => observer.disconnect();
+  }, [article]);
 
   if (!article) {
     return (
@@ -38,14 +69,10 @@ export default function Article() {
     `${article.year}-${article.month}-${article.day}`
   ).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 
-  const headings = article.content.filter(
-    (block) => block.type === "heading"
-  );
 
   return (
     <main className="container">
       <div className="article-layout">
-        {/* Main content */}
         <article>
           <span className="article-badge">Article</span>
           <h1 className="article-title">{article.title}</h1>
@@ -69,7 +96,6 @@ export default function Article() {
             height="600"
           />
 
-          {/* Key Takeaways */}
           <div className="takeaways-box">
             <h2 className="takeaways-title">Key Takeaways</h2>
             <ul className="takeaways-list">
@@ -79,7 +105,6 @@ export default function Article() {
             </ul>
           </div>
 
-          {/* Body content */}
           <div className="article-body">
             {article.content.map((block, i) => {
               if (block.type === "heading") {
@@ -111,15 +136,21 @@ export default function Article() {
           <CommentForm />
         </article>
 
-        {/* Sidebar */}
         <aside>
-          <div className="sidebar-sticky">
+   <div className="sidebar-sticky">
             <div className="toc-box">
               <h2 className="toc-title">Table of Contents</h2>
               <ul className="toc-list">
                 {headings.map((h) => (
                   <li key={h.id}>
-                    <a href={`#${h.id}`}>{h.text}</a>
+                    <a
+                      href={`#${h.id}`}
+                      className={
+                        activeId === h.id ? "toc-link toc-link-active" : "toc-link"
+                      }
+                    >
+                      {h.text}
+                    </a>
                   </li>
                 ))}
               </ul>
