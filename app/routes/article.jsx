@@ -36,39 +36,53 @@ export default function Article() {
     ? [{ id: "key-takeaways", text: "Key Takeaways" }, ...contentHeadings]
     : [];
 
-  useEffect(() => {
-    if (!article || headings.length === 0) return;
-    const updateActiveHeading = () => {
-      const activationPoint = 140;
-      let currentId = null;
-      headings.forEach((heading) => {
-        const element = document.getElementById(heading.id);
-        if (!element) return;
-        const top = element.getBoundingClientRect().top;
-        if (top <= activationPoint) {
-          currentId = heading.id;
-        }
-      });
-      setActiveId(currentId);
-    };
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateActiveHeading();
-          ticking = false;
-        });
-        ticking = true;
+useEffect(() => {
+  if (!article || headings.length === 0) return;
+
+  const updateActiveHeading = () => {
+    const activationPoint = 160;
+    let currentId = headings[0]?.id ?? null;
+
+    for (const heading of headings) {
+      const element = document.getElementById(heading.id);
+
+      if (!element) continue;
+
+      const top = element.getBoundingClientRect().top;
+
+      if (top <= activationPoint) {
+        currentId = heading.id;
+      } else {
+        break;
       }
-    };
-    updateActiveHeading();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", updateActiveHeading);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", updateActiveHeading);
-    };
-  }, [article]);
+    }
+
+    setActiveId(currentId);
+  };
+
+  let ticking = false;
+
+  const handleScroll = () => {
+    if (ticking) return;
+
+    window.requestAnimationFrame(() => {
+      updateActiveHeading();
+      ticking = false;
+    });
+
+    ticking = true;
+  };
+
+  updateActiveHeading();
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", updateActiveHeading);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", updateActiveHeading);
+  };
+}, [article, headings]);
 
   if (!article) {
     return (
@@ -164,9 +178,7 @@ export default function Article() {
                   <li key={h.id}>
 <a
   href={`#${h.id}`}
-  onClick={() => {
-    setActiveId(h.id);
-  }}
+  onClick={() => setActiveId(h.id)}
   className={
     activeId === h.id
       ? "toc-link toc-link-active"
