@@ -163,35 +163,35 @@ export default function Article() {
                 {headings.map((h) => (
                   <li key={h.id}>
                   <a
-    href={`#${h.id}`}
-    onClick={(e) => {
-      e.preventDefault();
+  href={`#${h.id}`}
+  onClick={(e) => {
+    e.preventDefault();
 
-      const element = document.getElementById(h.id);
+    const element = document.getElementById(h.id);
 
-      if (!element) return;
+    if (!element) return;
 
-      const offset = 140;
-      const elementPosition =
-        element.getBoundingClientRect().top + window.scrollY;
+    const offset = 140;
+    const elementPosition =
+      element.getBoundingClientRect().top + window.scrollY;
 
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: "smooth",
-      });
+    window.scrollTo({
+      top: elementPosition - offset,
+      behavior: "smooth",
+    });
 
-      setActiveId(h.id);
+    setActiveId(h.id);
 
-      window.history.replaceState(null, "", `#${h.id}`);
-    }}
-    className={
-      activeId === h.id
-        ? "toc-link toc-link-active"
-        : "toc-link"
-    }
-  >
-    {h.text}
-  </a>
+    window.history.replaceState(null, "", `#${h.id}`);
+  }}
+  className={
+    activeId === h.id
+      ? "toc-link toc-link-active"
+      : "toc-link"
+  }
+>
+  {h.text}
+</a>
                   </li>
                 ))}
               </ul>
