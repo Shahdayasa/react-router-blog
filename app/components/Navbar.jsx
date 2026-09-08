@@ -10,15 +10,16 @@ export function Navbar() {
 
         <nav className="navbar-links">
           <a href="#" className="navbar-link navbar-link-dropdown">
-            Products <span className="navbar-arrow">▾</span>
+            Products <span className="navbar-arrow" aria-hidden="true">▾</span>
           </a>
           <a href="#" className="navbar-link navbar-link-dropdown navbar-link-active">
-            Resources <span className="navbar-arrow">▾</span>
+            Resources <span className="navbar-arrow" aria-hidden="true">▾</span>
           </a>
-          <a href="#" className="navbar-link">Pricing</a>
-          <a href="#" className="navbar-link">Case Studies</a>
-          <a href="#" className="navbar-link">Contact Us</a>
-       <Link to="/signup" className="navbar-link">Sign Up</Link>        </nav>
+          <Link to="/pricing" className="navbar-link">Pricing</Link>
+          <Link to="/case-studies" className="navbar-link">Case Studies</Link>
+          <Link to="/contact-us" className="navbar-link">Contact Us</Link>
+          <Link to="/signup" className="navbar-link">Sign Up</Link>
+        </nav>
 
         <button className="navbar-cta">Book Demo</button>
       </div>

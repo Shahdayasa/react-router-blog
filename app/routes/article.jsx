@@ -1,12 +1,29 @@
-import { Link, useParams } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { articles } from "~/data/articles";
 import { CommentForm } from "~/components/CommentForm";
-export default function Article() {
-  const { year, month, day, slug } = useParams();
 
+export function loader({ params }) {
+  const { year, month, day, slug } = params;
   const article = articles.find(
     (a) => a.year === year && a.month === month && a.day === day && a.slug === slug
   );
+  return { article };
+}
+
+export function meta({ data }) {
+  if (!data?.article) {
+    return [{ title: "Article Not Found — Churn Solution" }];
+  }
+  return [
+    { title: `${data.article.title} — Churn Solution Blog` },
+    { name: "description", content: data.article.excerpt },
+    { property: "og:title", content: data.article.title },
+    { property: "og:description", content: data.article.excerpt },
+  ];
+}
+
+export default function Article() {
+  const { article } = useLoaderData();
 
   if (!article) {
     return (
@@ -43,17 +60,18 @@ export default function Article() {
             <span>·</span>
             <span>{formattedDate}</span>
           </div>
-<img
-  src={article.coverImage}
-  alt={article.title}
-  className="article-cover"
-  width="1200"
-  height="600"
-/>
+
+          <img
+            src={article.coverImage}
+            alt={article.title}
+            className="article-cover"
+            width="1200"
+            height="600"
+          />
 
           {/* Key Takeaways */}
           <div className="takeaways-box">
-            <h3 className="takeaways-title">Key Takeaways</h3>
+            <h2 className="takeaways-title">Key Takeaways</h2>
             <ul className="takeaways-list">
               {article.keyTakeaways.map((point, i) => (
                 <li key={i}>{point}</li>
@@ -90,14 +108,14 @@ export default function Article() {
           <div className="back-link-wrap">
             <Link to="/blog">← Back to blog</Link>
           </div>
-            <CommentForm />        
+          <CommentForm />
         </article>
 
         {/* Sidebar */}
         <aside>
           <div className="sidebar-sticky">
             <div className="toc-box">
-              <h3 className="toc-title">Table of Contents</h3>
+              <h2 className="toc-title">Table of Contents</h2>
               <ul className="toc-list">
                 {headings.map((h) => (
                   <li key={h.id}>

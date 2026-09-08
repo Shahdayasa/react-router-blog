@@ -14,3 +14,14 @@ export default function Blog() {
     </main>
   );
 }
+
+export function meta() {
+  return [
+    { title: "Resources & Articles — Churn Solution" },
+    {
+      name: "description",
+      content:
+        "Featured articles, guides, and case studies on customer churn prevention and retention strategy.",
+    },
+  ];
+}

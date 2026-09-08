@@ -71,19 +71,19 @@ export function Footer() {
             Find it on the Stripe App Marketplace
           </div>
 <div className="footer-social">
-  <a href="#" className="footer-social-icon">
+  <a href="#" className="footer-social-icon" aria-label="Facebook">
     <i className="fa-brands fa-facebook-f"></i>
   </a>
-  <a href="#" className="footer-social-icon">
+  <a href="#" className="footer-social-icon" aria-label="Instagram">
     <i className="fa-brands fa-instagram"></i>
   </a>
-  <a href="#" className="footer-social-icon">
+  <a href="#" className="footer-social-icon" aria-label="LinkedIn">
     <i className="fa-brands fa-linkedin-in"></i>
   </a>
-  <a href="#" className="footer-social-icon">
+  <a href="#" className="footer-social-icon" aria-label="YouTube">
     <i className="fa-brands fa-youtube"></i>
   </a>
-  <a href="#" className="footer-social-icon">
+  <a href="#" className="footer-social-icon" aria-label="Email us">
     <i className="fa-solid fa-envelope"></i>
   </a>
 </div>

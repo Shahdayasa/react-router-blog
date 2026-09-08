@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 export default function SignUp() {
   const [fullName, setFullName] = useState("");
@@ -32,7 +33,7 @@ export default function SignUp() {
             Rather than relying on customer acquisition, Churn Solution will
             help you keep your current customers and increase your revenue.
           </p>
-          <div className="signup-illustration">
+          <div className="signup-illustration" aria-hidden="true">
             <div className="signup-illustration-box signup-illustration-green"></div>
             <div className="signup-illustration-box signup-illustration-circle"></div>
             <div className="signup-illustration-box signup-illustration-diamond"></div>
@@ -44,7 +45,7 @@ export default function SignUp() {
           <h2 className="signup-title">Sign up with</h2>
 
           <button type="button" className="signup-google-btn">
-            <span className="signup-google-icon">G</span>
+            <span className="signup-google-icon" aria-hidden="true">G</span>
             Continue with Google
           </button>
 
@@ -59,6 +60,7 @@ export default function SignUp() {
                 placeholder="Enter your name"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
+                autoComplete="name"
                 required
               />
             </label>
@@ -71,6 +73,7 @@ export default function SignUp() {
                 placeholder="Enter your email"
                 value={workEmail}
                 onChange={(e) => setWorkEmail(e.target.value)}
+                autoComplete="email"
                 required
               />
             </label>
@@ -83,6 +86,7 @@ export default function SignUp() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password"
                 required
               />
             </label>
@@ -95,6 +99,7 @@ export default function SignUp() {
                 placeholder="Enter your phone number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                autoComplete="tel"
               />
             </label>
 
@@ -106,6 +111,7 @@ export default function SignUp() {
                 placeholder="Enter your company name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
+                autoComplete="organization"
               />
             </label>
 
@@ -117,6 +123,7 @@ export default function SignUp() {
                 placeholder="Enter your job title"
                 value={jobTitle}
                 onChange={(e) => setJobTitle(e.target.value)}
+                autoComplete="organization-title"
               />
             </label>
 
@@ -127,7 +134,7 @@ export default function SignUp() {
                 value={paymentProcessor}
                 onChange={(e) => setPaymentProcessor(e.target.value)}
               >
-                <option value="">Enter your payment processor</option>
+                <option value="" disabled>Select your payment processor</option>
                 <option value="stripe">Stripe</option>
                 <option value="paypal">PayPal</option>
                 <option value="braintree">Braintree</option>
@@ -140,15 +147,22 @@ export default function SignUp() {
             </button>
 
             <p className="signup-login-text">
-              Already have an account? <a href="#">Log in</a>
+              Already have an account? <Link to="/login">Log in</Link>
             </p>
 
             <p className="signup-demo-link">
-              <a href="#">Schedule a demo instead →</a>
+              <Link to="/contact-us">Schedule a demo instead →</Link>
             </p>
           </form>
         </div>
       </div>
     </main>
   );
+}
+
+export function meta() {
+  return [
+    { title: "Sign Up — Churn Solution" },
+    { name: "description", content: "Create your Churn Solution account and start reducing churn today." },
+  ];
 }

@@ -22,7 +22,11 @@ export function CommentForm() {
       </p>
 
       <form onSubmit={handleSubmit}>
+        <label className="sr-only" htmlFor="comment-text">
+          Comment
+        </label>
         <textarea
+          id="comment-text"
           className="comment-textarea"
           placeholder="Type here.."
           value={comment}
@@ -31,28 +35,45 @@ export function CommentForm() {
         />
 
         <div className="comment-fields-row">
+          <label className="sr-only" htmlFor="comment-name">
+            Name
+          </label>
           <input
+            id="comment-name"
             type="text"
             className="comment-input"
             placeholder="Name*"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            autoComplete="name"
             required
           />
+
+          <label className="sr-only" htmlFor="comment-email">
+            Email
+          </label>
           <input
+            id="comment-email"
             type="email"
             className="comment-input"
             placeholder="Email*"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
             required
           />
+
+          <label className="sr-only" htmlFor="comment-website">
+            Website
+          </label>
           <input
+            id="comment-website"
             type="text"
             className="comment-input"
             placeholder="Website"
             value={website}
             onChange={(e) => setWebsite(e.target.value)}
+            autoComplete="url"
           />
         </div>
 

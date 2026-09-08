@@ -2,8 +2,12 @@ import { Welcome } from "../welcome/welcome";
 
 export function meta() {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Churn Solution — Reduce Customer Churn & Boost Retention" },
+    {
+      name: "description",
+      content:
+        "Churn Solution helps SaaS businesses detect early churn signals and retain more customers.",
+    },
   ];
 }
 
