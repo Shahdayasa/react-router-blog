@@ -994,4 +994,46 @@ img {
     color: #60a5fa;
   }
 }
+ .toc-list {
+  list-style: none;
+  font-size: 0.95rem;
+}
+ 
+.toc-list li {
+  margin-bottom: 1.5rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid transparent;
+}
+ 
+.toc-list li:last-child {
+  margin-bottom: 0;
+}
+ 
+.toc-link {
+  color: #374151;
+  transition: color 0.15s ease, font-weight 0.15s ease;
+}
+ 
+.toc-link-active {
+  color: #1e1b4b;
+  font-weight: 700;
+}
+ 
+.toc-list li:has(.toc-link-active) {
+  border-left-color: #1e1b4b;
+}
+ 
+@media (prefers-color-scheme: dark) {
+  .toc-link {
+    color: #9ca3af;
+  }
+ 
+  .toc-link-active {
+    color: #f9fafb;
+  }
+ 
+  .toc-list li:has(.toc-link-active) {
+    border-left-color: #f9fafb;
+  }
+}
  

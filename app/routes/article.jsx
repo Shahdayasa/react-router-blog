@@ -27,11 +27,15 @@ export default function Article() {
   const { article } = useLoaderData();
   const [activeId, setActiveId] = useState(null);
  
-  const headings = article
+  const contentHeadings = article
     ? article.content.filter((block) => block.type === "heading")
     : [];
+ 
+  const headings = article
+    ? [{ id: "key-takeaways", text: "Key Takeaways" }, ...contentHeadings]
+    : [];
 
-    useEffect(() => {
+  useEffect(() => {
     if (!article || headings.length === 0) return;
  
     const observer = new IntersectionObserver(
@@ -97,7 +101,7 @@ export default function Article() {
           />
 
           <div className="takeaways-box">
-            <h2 className="takeaways-title">Key Takeaways</h2>
+<h2 className="takeaways-title" id="key-takeaways">Key Takeaways</h2>
             <ul className="takeaways-list">
               {article.keyTakeaways.map((point, i) => (
                 <li key={i}>{point}</li>
